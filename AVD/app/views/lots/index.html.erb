@@ -1,0 +1,15 @@
+
+
+<h1>Lots Index</h1>
+
+<%= paginate @lots %>
+<ul class="list-group">
+	<% @lots.each do |lot| %>
+		<li class="list-group-item">
+			<%= lot.name %>
+			<%= link_to 'Show', :controller => 'lots', :action => 'show', :id => lot %>
+			<%= link_to 'Delete', lot_path(lot), :method => :delete %>
+		</li>
+	<% end %>
+</ul>
+<%= link_to 'New Lot', :controller => 'lots', :action => 'new' %>

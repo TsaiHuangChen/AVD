@@ -1,0 +1,23 @@
+
+<%= form_for @lot, :url => lot_site_difference_parameter_path do |f| %>
+	<div class="page-header">
+		<h1>Site Difference Mode Rules <small><%= @lot.name %></small></h1>
+	</div>
+
+	<div><h4>Site Difference Generation Parameters</h4></div>
+	<ul>
+		<% for i in 0..(@lot.site_number-1)  %>
+			<%= f.label :site_5_enable do %>
+				<%= f.check_box :site_5_enable  %>
+				Enable Site <%= i %>, yield:
+				<%= f.number_field :site_5_yield, :class => 'text_field', min: 0.0, max: 100.0, step: 0.01 %>
+			<% end %>
+			<br>
+		<% end %>
+	</ul>
+
+	<br>
+	<%= f.submit "Submit" %>
+	<%= link_to 'back to lot index', :controller => 'lots', :action => 'index' %>
+
+<% end %>

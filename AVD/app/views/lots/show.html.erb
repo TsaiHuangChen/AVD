@@ -1,0 +1,90 @@
+
+<div class="page-header">
+	<h1>Lot Parameters <small><%= @lot.name %></small></h1>
+</div>
+
+<div>
+	<h4>Basic Parameters</h4>
+	<ul>
+		<li>Lot Name: <%= @lot.name %></li>
+		<li>Tester Name: <%= @lot.tester %></li>
+		<li>Device Name: <%= @lot.device %></li>
+		<li>Total Device Count: <%= @lot.total_device_count %></li>
+		<li>Generate Mode:
+			<% if(@lot.generate_mode == 1) %>	Normal
+			<% elsif(@lot.generate_mode == 2) %>	Cliff
+			<% else %>	Site Difference
+			<% end %>
+		</li>
+	</ul>
+</div>
+
+
+<% if(@lot.generate_mode == 1) %>
+	<h4>Normal Generation Parameter</h4>
+	<ul>
+		<li>Generate Yield:  <%= @lot.basic_yield %></li>
+	</ul>
+<% elsif(@lot.generate_mode == 2) %>
+	<h4>Cliff Generation Parameter</h4>
+	<ul>
+		<li>Cliff number:	<%= @lot.cliff_number %></li>
+		<li>First region yield:	<%= @lot.first_region_yield %></li>
+		<li>Second region yield:	<%= @lot.second_region_yield %></li>
+	</ul>
+<% else %>
+	<h4>Site Difference Generation Parameter</h4>
+	<ul>
+		<% if(@lot.site_0_enable == true) %>
+			<li>Site 0:	Active, generate yield: <%= @lot.site_0_yield %></li>
+		<% else %>
+			<li>Site 0:	Not Active.</li>
+		<% end %>
+		<% if(@lot.site_number >= 2) %>
+			<% if(@lot.site_1_enable == true) %>
+				<li>Site 1:	Active, generate yield: <%= @lot.site_1_yield %></li>
+			<% else %>
+				<li>Site 1:	Not Active.</li>
+			<% end %>
+		<% end %>
+		<% if(@lot.site_number >= 4) %>
+			<% if(@lot.site_2_enable == true) %>
+				<li>Site 2:	Active, generate yield: <%= @lot.site_2_yield %></li>
+			<% else %>
+				<li>Site 2:	Not Active.</li>
+			<% end %>
+			<% if(@lot.site_3_enable == true) %>
+				<li>Site 3:	Active, generate yield: <%= @lot.site_3_yield %></li>
+			<% else %>
+				<li>Site 3:	Not Active.</li>
+			<% end %>
+		<% end %>
+		<% if(@lot.site_number >= 8) %>
+			<% if(@lot.site_4_enable == true) %>
+				<li>Site 4:	Active, generate yield: <%= @lot.site_4_yield %></li>
+			<% else %>
+				<li>Site 4:	Not Active.</li>
+			<% end %>
+			<% if(@lot.site_5_enable == true) %>
+				<li>Site 5:	Active, generate yield: <%= @lot.site_5_yield %></li>
+			<% else %>
+				<li>Site 5:	Not Active.</li>
+			<% end %>
+			<% if(@lot.site_6_enable == true) %>
+				<li>Site 6:	Active, generate yield: <%= @lot.site_6_yield %></li>
+			<% else %>
+				<li>Site 6:	Not Active.</li>
+			<% end %>
+			<% if(@lot.site_7_enable == true) %>
+				<li>Site 7:	Active, generate yield: <%= @lot.site_7_yield %></li>
+			<% else %>
+				<li>Site 7:	Not Active.</li>
+			<% end %>
+		<% end %>
+	</ul>
+
+<% end %>
+
+
+
+<p><%= link_to 'Back to index', :controller => 'lots', :action => 'index' %></p>

@@ -1,0 +1,12 @@
+
+
+<h1>Current Testing Lots</h1>
+
+<%= paginate @lots %>
+<ul class="list-group">
+	<% @lots.each do |lot| %>
+		<li class="list-group-item">
+			<%= link_to "#{lot.name}", :controller => 'data', :action => 'show', :id => lot %>
+		</li>
+	<% end %>
+</ul>
