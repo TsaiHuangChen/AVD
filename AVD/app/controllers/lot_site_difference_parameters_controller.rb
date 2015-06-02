@@ -2,6 +2,7 @@ class LotSiteDifferenceParametersController < ApplicationController
 
   def edit
     @lot = Lot.find(params[:id])
+    @sites = Site.where( lot_id: @lot.id ).to_a
     @page_title = "edit " + @lot.name
   end
 
@@ -18,23 +19,11 @@ class LotSiteDifferenceParametersController < ApplicationController
   private
 
   def lot_site_difference_params
-    params.require(:lot).permit(
-        :site_0_enable,
-        :site_1_enable,
-        :site_2_enable,
-        :site_3_enable,
-        :site_4_enable,
-        :site_5_enable,
-        :site_6_enable,
-        :site_7_enable,
-        :site_0_yield,
-        :site_1_yield,
-        :site_2_yield,
-        :site_3_yield,
-        :site_4_yield,
-        :site_5_yield,
-        :site_6_yield,
-        :site_7_yield
+    params.require(:site).permit(
+        :lot_id,
+        :site_serial,
+        :site_enable,
+        :site_yield
     )
   end
 end

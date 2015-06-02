@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601023704) do
+ActiveRecord::Schema.define(version: 20150601102005) do
 
   create_table "alerts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -53,22 +53,6 @@ ActiveRecord::Schema.define(version: 20150601023704) do
     t.integer  "cliff_number"
     t.float    "first_region_yield"
     t.float    "second_region_yield"
-    t.boolean  "site_0_enable"
-    t.boolean  "site_1_enable"
-    t.boolean  "site_2_enable"
-    t.boolean  "site_3_enable"
-    t.boolean  "site_4_enable"
-    t.boolean  "site_5_enable"
-    t.boolean  "site_6_enable"
-    t.boolean  "site_7_enable"
-    t.float    "site_0_yield"
-    t.float    "site_1_yield"
-    t.float    "site_2_yield"
-    t.float    "site_3_yield"
-    t.float    "site_4_yield"
-    t.float    "site_5_yield"
-    t.float    "site_6_yield"
-    t.float    "site_7_yield"
     t.integer  "generate_mode"
     t.integer  "device_id"
   end
@@ -76,12 +60,14 @@ ActiveRecord::Schema.define(version: 20150601023704) do
   add_index "lots", ["device_id"], name: "index_lots_on_device_id"
 
   create_table "sites", force: :cascade do |t|
-    t.string   "site_lot"
     t.integer  "site_serial"
     t.boolean  "site_enable"
     t.float    "site_yield"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "lot_id"
   end
+
+  add_index "sites", ["lot_id"], name: "index_sites_on_lot_id"
 
 end

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :devices
-  resources :lots, :lot_normal_parameters, :lot_cliff_parameters, :lot_site_difference_parameters
+  resources :lots
+  resources :lot_normal_parameters
+  resources :lot_cliff_parameters
+  resources :lot_site_difference_parameters
+  resources :sites
 
   root to:'root#home'
   #match ':controller(/:action(/:id(.:format)))', :via => :all

@@ -3,6 +3,10 @@ class Lot < ActiveRecord::Base
   has_many :sites
   has_many :data
   has_many :alerts
+
+  #validate the unique
+  validates :name, uniqueness: true
+
   #validate the necessary blank
   validates :name, presence: true
   validates :tester, presence: true

@@ -16,7 +16,8 @@ class LotsController < ApplicationController
 
       #create the rows in site table
       for i in 0..(@lot.site_number-1) do
-        Site.create( :site_lot => @lot.name, :site_serial => i )
+        @lot.sites.create( :site_serial => i )
+        #Site.create( :lot_id => @lot, :site_serial => i )
       end
 
       if(@lot.generate_mode == 1)
@@ -49,6 +50,7 @@ class LotsController < ApplicationController
   def lot_params
     params.require(:lot).permit(
       :name,
+      :device_id,
       :tester,
       :device,
       :total_device_count,
