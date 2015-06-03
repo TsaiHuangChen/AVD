@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :lots
   resources :lot_normal_parameters
   resources :lot_cliff_parameters
-  resources :lot_site_difference_parameters
+  #resources :lot_site_difference_parameters
   resources :sites
+
+  #resources :sites, :collection => { :edit_multiple => :post, :update_multiple => :put }
 
   root to:'root#home'
   #match ':controller(/:action(/:id(.:format)))', :via => :all

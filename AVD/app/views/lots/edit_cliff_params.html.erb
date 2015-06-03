@@ -1,5 +1,5 @@
 
-<%= form_for @lot, :url => lot_cliff_parameter_path do |f| %>
+<%= form_for @lot, :url => { :controller => 'lots', :action => 'update_cliff_params' } do |f| %>
 	<div class="page-header">
 		<h1>Cliff Mode Rules <small><%= @lot.name %></small></h1>
 	</div>

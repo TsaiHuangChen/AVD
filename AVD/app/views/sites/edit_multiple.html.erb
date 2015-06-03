@@ -1,0 +1,20 @@
+
+
+<div class="page-header">
+	<h1>Site Difference Mode Rules <small><%= @lot.name %></small></h1>
+</div>
+
+<% i = 0 %>
+<%= form_for @lot do |f| %>
+	<%= f.fields_for :sites do |ss| %>
+		<%= ss.label :site_enable do %>
+			<%= ss.check_box :site_enable %>
+			Site <%= i %> Enable, Yield <%= ss.number_field :site_yield %>
+			<% i = i+1 %>
+		<% end %>
+		<br>
+	<% end %>
+	<%= f.submit "submit" %>
+<% end %>
+
+

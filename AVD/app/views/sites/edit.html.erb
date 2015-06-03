@@ -1,0 +1,22 @@
+
+
+<div class="page-header">
+	<h1>Site Difference Mode Rules <small><%= @lot.name %></small></h1>
+</div>
+
+
+<% simple_form_for @lot do  |f| %>
+	<%= @sites.each do |s| %>
+
+		<%= s.site_serial %>
+
+	<% end %>
+	<%= f.button :submit, :label => "submit" %>
+<% end %>
+
+
+
+
+
+<%end %>
+

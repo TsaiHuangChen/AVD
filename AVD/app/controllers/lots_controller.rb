@@ -1,5 +1,13 @@
 class LotsController < ApplicationController
-  before_action :set_lot, :only => [ :show, :edit_normal_mode, :update, :destroy ]
+  before_action :set_lot, :only => [ :show,
+                                     :edit_normal_params,
+                                     :update_normal_params,
+                                     :edit_cliff_params,
+                                     :update_cliff_params,
+                                     :edit_site_difference_params,
+                                     :update_site_difference_params,
+                                     :destroy
+                                  ]
 
   def index
     @lots = Lot.page(params[:page]).per(10)
@@ -13,23 +21,57 @@ class LotsController < ApplicationController
   def create
     @lot = Lot.new(lot_params)
     if @lot.save
-
       #create the rows in site table
       for i in 0..(@lot.site_number-1) do
         @lot.sites.create( :site_serial => i )
-        #Site.create( :lot_id => @lot, :site_serial => i )
       end
 
       if(@lot.generate_mode == 1)
-        redirect_to :controller => :lot_normal_parameters, :action => :edit, :id => @lot
+        redirect_to :action => :edit_normal_params, :id => @lot
       elsif(@lot.generate_mode == 2)
-        redirect_to :controller => :lot_cliff_parameters, :action => :edit, :id => @lot
+        redirect_to :action => :edit_cliff_params, :id => @lot
       else
-        redirect_to :controller => :lot_site_difference_parameters, :action => :edit, :id => @lot
+        redirect_to :action => :edit_site_difference_params, :id => @lot
       end
     else
       render :action => :new
     end
+  end
+
+  def edit_normal_params
+    @page_title = "edit " + @lot.name
+  end
+
+  def update_normal_params
+    if @lot.update(lot_params)
+      redirect_to :controller => :lots, :action => :index
+      flash[:notice] = "lot #{@lot.name} were succesfully created"
+    else
+      render :action => :edit_normal_params
+    end
+  end
+
+  def edit_cliff_params
+    @page_title = "edit " + @lot.name
+  end
+
+  def update_cliff_params
+    if @lot.update(lot_params)
+      redirect_to :controller => :lots, :action => :index
+      flash[:notice] = "lot #{@lot.name} were succesfully created"
+    else
+      render :action => :edit
+    end
+  end
+
+  def edit_site_difference_params
+    @page_title = "edit " + @lot.name
+  end
+
+  def update_site_difference_params
+    @lot.attributes = params[:lot]
+    @lot.sites.update(params[:site].keys, params[:site].values)
+    redirect_to :action => :index
   end
 
   def show
@@ -55,7 +97,12 @@ class LotsController < ApplicationController
       :device,
       :total_device_count,
       :site_number,
-      :generate_mode
+      :generate_mode,
+      :basic_yield,
+      :cliff_number,
+      :first_region_yield,
+      :second_region_yield,
+      sites_attributes: [:site_enable, :site_yield, :site_serial, :lot_id ]
     )
   end
 
