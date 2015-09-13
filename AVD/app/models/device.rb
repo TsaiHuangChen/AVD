@@ -1,6 +1,6 @@
 class Device < ActiveRecord::Base
 
-  has_many :lots
+  has_many :lots, :dependent => :destroy
   #validate device uniqueness
   validates :name, uniqueness: true
   

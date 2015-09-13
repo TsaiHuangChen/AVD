@@ -10,7 +10,7 @@ class LotsController < ApplicationController
                                   ]
 
   def index
-    @lots = Lot.page(params[:page]).per(10)
+    @lots = Lot.page(params[:page]).per(10).order('id DESC')
   end
 
   def new
@@ -60,7 +60,7 @@ class LotsController < ApplicationController
       redirect_to :controller => :lots, :action => :index
       flash[:notice] = "lot #{@lot.name} were succesfully created"
     else
-      render :action => :edit
+      render :action => :edit_cliff_params
     end
   end
 
@@ -69,13 +69,15 @@ class LotsController < ApplicationController
   end
 
   def update_site_difference_params
-    @lot.attributes = params[:lot]
-    @lot.sites.update(params[:site].keys, params[:site].values)
-    redirect_to :action => :index
+    if @lot.update_attributes(lot_params)
+      redirect_to :action => :index
+    else
+      render :action => :edit_site_difference_params
+    end
   end
 
   def show
-    #@lot = Lot.find(params[:id])
+    @sites = Site.where( :lot_id => @lot )
     @page_title = @lot.name
   end
 
@@ -94,7 +96,7 @@ class LotsController < ApplicationController
       :name,
       :device_id,
       :tester,
-      :device,
+      #:device,
       :total_device_count,
       :site_number,
       :generate_mode,
@@ -102,7 +104,7 @@ class LotsController < ApplicationController
       :cliff_number,
       :first_region_yield,
       :second_region_yield,
-      sites_attributes: [:site_enable, :site_yield, :site_serial, :lot_id ]
+      sites_attributes: [ :lot_id, :site_serial, :site_enable, :site_yield, :id ]
     )
   end
 

@@ -11,17 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601102005) do
+ActiveRecord::Schema.define(version: 20150727221505) do
 
   create_table "alerts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.integer  "alerts_kind"
+    t.boolean  "fixed",                    default: false
+    t.integer  "lot_id"
+    t.float    "max_yield"
+    t.float    "min_yield"
+    t.string   "max_element"
+    t.string   "min_element"
+    t.float    "region_1_yield"
+    t.float    "region_2_yield"
+    t.integer  "detected_serial",          default: 0
+    t.integer  "continuously_fail_number", default: 0
+    t.integer  "continuously_fail_bin",    default: 0
   end
 
+  add_index "alerts", ["lot_id"], name: "index_alerts_on_lot_id"
+
   create_table "data", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "bin"
+    t.integer  "serial",     default: 0
+    t.integer  "lot_id"
+    t.integer  "site"
   end
+
+  add_index "data", ["lot_id"], name: "index_data_on_lot_id"
 
   create_table "devices", force: :cascade do |t|
     t.datetime "created_at",                                 null: false
@@ -42,8 +62,8 @@ ActiveRecord::Schema.define(version: 20150601102005) do
   end
 
   create_table "lots", force: :cascade do |t|
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.string   "name"
     t.string   "tester"
     t.integer  "device"
@@ -55,6 +75,10 @@ ActiveRecord::Schema.define(version: 20150601102005) do
     t.float    "second_region_yield"
     t.integer  "generate_mode"
     t.integer  "device_id"
+    t.boolean  "site_difference_detected",           default: false
+    t.boolean  "continuously_failure_detected",      default: false
+    t.boolean  "time_variance_detected",             default: false
+    t.boolean  "different_tester_variance_detected", default: false
   end
 
   add_index "lots", ["device_id"], name: "index_lots_on_device_id"

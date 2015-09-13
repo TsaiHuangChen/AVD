@@ -1,8 +1,6 @@
 class CreateSites < ActiveRecord::Migration
   def change
 
-    drop_table :site_difference_parameters
-
     create_table :sites do |t|
       t.string :site_lot
       t.integer :site_serial

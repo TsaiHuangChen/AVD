@@ -12,8 +12,8 @@
 		<li><%= f.label "Device Name:" %>	<%= f.collection_select :device_id, Device.all, :id, :name %><br></li>
 		<li><%= f.label "Total Device Count:" %>
 			<%= f.number_field :total_device_count, min: 0, step: 1 %></li>
-		<li><%= f.label "Site Number(max 8):" %>
-			<%= f.select :site_number, [['1', 1], ['2', 2], ['4', 4], ['8', 8]] %></li>
+		<li><%= f.label "Site Number:" %>
+			<%= f.number_field :site_number, min: 0, max: 100, step: 1 %></li>
 		<li><%= f.label "Generate Mode:" %>
 			<%= f.select :generate_mode, [['Normal', 1], ['Cliff', 2], ['Site Difference', 3]] %></li>
 	</ul>

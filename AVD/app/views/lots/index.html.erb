@@ -8,7 +8,7 @@
 		<li class="list-group-item">
 			<%= lot.name %>
 			<%= link_to 'Show', :controller => 'lots', :action => 'show', :id => lot %>
-			<%= link_to 'Delete', lot_path(lot), :method => :delete %>
+			<%= link_to 'Delete', lot_path(lot), :method => :delete, data: {confirm: "Are you sure?"}  %>
 		</li>
 	<% end %>
 </ul>
