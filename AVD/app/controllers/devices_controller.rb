@@ -1,5 +1,6 @@
 class DevicesController < ApplicationController
   #before_action :set_device, :only => [ :show, :edit, :update, :destroy ]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
   def index
     @devices = Device.page(params[:page]).per(10)

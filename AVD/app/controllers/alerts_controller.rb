@@ -1,5 +1,7 @@
 class AlertsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:destroy]
+
   def index
     @alerts = Alert.page(params[:page]).per(50).order('id DESC')
   end

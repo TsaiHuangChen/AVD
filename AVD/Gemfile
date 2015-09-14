@@ -4,7 +4,9 @@ source 'https://rubygems.org'
 gem 'bootstrap-sass' #20150518
 gem 'kaminari' #20150519
 gem 'simple_form' #20150603
+#gem "simple_form", "~> 3.1.0.rc2", github: "plataformatec/simple_form", branch: "master" #20150914
 gem 'sidekiq' #20150610
+gem "devise"  #20150914
 
 gem 'font-awesome-sass'
 

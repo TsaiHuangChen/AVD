@@ -1,5 +1,5 @@
 class LotsController < ApplicationController
-  before_action :set_lot, :only => [ :show,
+  before_action :set_lot,  :only => [ :show,
                                      :edit_normal_params,
                                      :update_normal_params,
                                      :edit_cliff_params,
@@ -8,6 +8,17 @@ class LotsController < ApplicationController
                                      :update_site_difference_params,
                                      :destroy
                                   ]
+  before_action :authenticate_user!,  only: [
+                                        :new,
+                                        :edit_normal_params,
+                                        :update_normal_params,
+                                        :edit_cliff_params,
+                                        :update_cliff_params,
+                                        :edit_site_difference_params,
+                                        :update_site_difference_params,
+                                        :destroy
+                                            ]
+
 
   def index
     @lots = Lot.page(params[:page]).per(10).order('id DESC')
