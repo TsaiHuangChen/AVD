@@ -26,9 +26,9 @@
 	Enable The Time Variance Detection.
 <% end %>
 <ul>
-	<li><%= f.label "Window Size(Large)" %>
+	<li><%= f.label "Window Size(I)" %>
 		<%= f.number_field :time_variance_detect_window_large, min: 0, step: 1 %></li>
-	<li><%= f.label "Window Size(Small)" %>
+	<li><%= f.label "Window Size(II)" %>
 		<%= f.number_field :time_variance_detect_window_small, min: 0, step: 1 %></li>
 	<li><%= f.label :time_variance_detect_threshold, "Yield Difference Threshold" %>
 		<%= f.number_field :time_variance_detect_threshold, :class => 'text_field', min: 0.0, max: 100.0, step: 0.01 %></li>

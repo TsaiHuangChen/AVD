@@ -102,6 +102,18 @@ class LotsController < ApplicationController
 
   private
 
+  def lot_basic_params
+    params.require(:lot).permit(
+        :name,
+        :device_id,
+        :tester,
+        :total_device_count,
+        :site_number,
+        :generate_mode
+    )
+  end
+
+
   def lot_params
     params.require(:lot).permit(
       :name,

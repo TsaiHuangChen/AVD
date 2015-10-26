@@ -166,9 +166,13 @@ class DataAnalyzeWorker
 
     window_a = lot.device.time_variance_detect_window_large
     window_b = lot.device.time_variance_detect_window_small
-    passed_a = Datum.where( :id => Datum.where(:lot=>lot).last(window_a), :bin => 1 ).count
-    yield_a  = (passed_a.to_f/window_a.to_f)*100.0
+    window_total = window_a + window_b
+
+    passed_total = Datum.where( :id => Datum.where(:lot=>lot).last(window_total), :bin => 1 ).count
     passed_b = Datum.where( :id => Datum.where(:lot=>lot).last(window_b), :bin => 1 ).count
+    passed_a = passed_total - passed_b
+
+    yield_a  = (passed_a.to_f/window_a.to_f)*100.0
     yield_b  = (passed_b.to_f/window_b.to_f)*100.0
 
     puts "#{lot.name} yield_a is #{yield_a} yield_b is #{yield_b}"

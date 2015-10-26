@@ -18,4 +18,5 @@
 
 
 #added at 20150914
-/config/database.yml
+/config/database.ymlconfig/database.yml
+config/secrets.yml

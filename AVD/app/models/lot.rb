@@ -1,9 +1,10 @@
 class Lot < ActiveRecord::Base
   belongs_to :device
-  has_many :sites, :dependent => :destroy
-  has_many :data, :dependent => :destroy
 
-  has_many :alerts
+  has_many :sites, :dependent => :destroy
+  #has_many :data, :dependent => :destroy
+  has_many :data
+  has_many :alerts, :dependent => :destroy
 
   accepts_nested_attributes_for :sites
 

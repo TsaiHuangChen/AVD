@@ -8,7 +8,7 @@
 		<li class="list-group-item">
 			<%= lot.name %>
 			<%= link_to("Show", lot_path(lot), class: "btn btn-default btn-xs") %>
-			<%= link_to("Delete", lot_path(lot), class: "btn btn-default btn-xs", data: {confirm: "Are you sure?"}) %>
+			<%= link_to("Delete", lot_path(lot), class: "btn btn-default btn-xs", :method => :delete, data: {confirm: "Are you sure?"}) %>
 		</li>
 	<% end %>
 </ul>

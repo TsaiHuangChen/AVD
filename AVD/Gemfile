@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'capistrano-passenger', :group => :development	#20151001
 gem 'bootstrap-sass' #20150518
 gem 'kaminari' #20150519
 gem 'simple_form' #20150603
@@ -14,7 +14,7 @@ gem 'font-awesome-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'  #20150914
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -42,6 +42,12 @@ gem 'bcrypt', '~> 3.1.7' #20150518
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
+group :development do
+  gem 'capistrano-rails', '~>1.1.1'
+  gem 'capistrano-sidekiq'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -51,5 +57,15 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  #20150914
+  gem "brakeman", require: false
+  gem "rails_best_practices", require: false
+  gem "sqlite3"
+
+end
+
+group :production do
+  gem "mysql2"
 end
 

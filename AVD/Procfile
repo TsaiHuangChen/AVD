@@ -1,5 +1,6 @@
 
-web: rails server		#command to start server
+#web: rails server		#command to start local server
+web: rails server -p 4000       #command to start a remote server at port 4000
 #worker: rake data_generate	#command to start data generate sidekiq worker
 #worker: rake data_analyze	#command to start data analyze sidekiq worker
 worker: redis-server		#command to start redis server

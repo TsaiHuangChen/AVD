@@ -10,7 +10,7 @@ Device Name: <%= @device.name %><br>
 		Yes<br>
 		<ul>
 			<li>Window Size: <%= @device.site_difference_detect_window %></li>
-			<li>Yield Difference Threshold: <%= @device.site_difference_detect_threshold %></li>
+			<li>Yield Difference Threshold: <%= @device.site_difference_detect_threshold %> % </li>
 		</ul>
 	<% else %>
 		No
@@ -32,9 +32,9 @@ Device Name: <%= @device.name %><br>
 	<% if(@device.time_variance_detect_enable == true)  %>
 		Yes<br>
 		<ul>
-			<li>Larger Window Size: <%= @device.time_variance_detect_window_large %></li>
-			<li>Smaller Window Size: <%= @device.time_variance_detect_window_small %></li>
-			<li>Yield Difference Threshold: <%= @device.time_variance_detect_threshold %></li>
+			<li>Window I Size: <%= @device.time_variance_detect_window_large %></li>
+			<li>Window II Size: <%= @device.time_variance_detect_window_small %></li>
+			<li>Yield Difference Threshold: <%= @device.time_variance_detect_threshold %> % </li>
 		</ul>
 	<% else %>
 		No
@@ -46,7 +46,7 @@ Device Name: <%= @device.name %><br>
 	Yes<br>
 	<ul>
 		<li>Window Size: <%= @device.different_tester_variance_detect_window %></li>
-		<li>Yield Difference Threshold: <%= @device.different_tester_variance_detect_threshold %></li>
+		<li>Yield Difference Threshold: <%= @device.different_tester_variance_detect_threshold %> % </li>
 	</ul>
 <% else %>
 	No

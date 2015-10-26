@@ -3,7 +3,7 @@ class DevicesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
   def index
-    @devices = Device.page(params[:page]).per(10)
+    @devices = Device.page(params[:page]).per(100)
   end
 
   def new
