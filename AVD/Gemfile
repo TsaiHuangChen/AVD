@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'mysql2' #20151026
+gem 'mysql2', '~>0.3.18' #20151026
 
 gem 'capistrano-passenger', :group => :development	#20151001
 gem 'bootstrap-sass' #20150518
